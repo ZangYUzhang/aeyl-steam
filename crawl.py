@@ -1,15 +1,13 @@
 # 测试模块
-import asyncio
 import buff_spider
-import aiohttp
+from models import Goods
 
 
-async def main():
-    url = "https://buff.163.com/goods/11475?from=market#tab=selling"
-    session = aiohttp.ClientSession()
-    await buff_spider.get_goods_info(url, session)
-    await session.close()
+def main():
+    goods = Goods()
+    goods.buff_info.url = "https://buff.163.com/goods/11475?from=market#tab=selling"
+    goods.update_buff_info()
 
 
 if __name__ == "__main__":
-    asyncio.get_event_loop().run_until_complete(main())
+    main()
